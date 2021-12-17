@@ -8,10 +8,10 @@
 namespace GhostSpectator
 {
     using System;
+    using Exiled.API.Enums;
     using Exiled.API.Features;
     using GhostSpectator.EventHandlers;
     using HarmonyLib;
-    using MEC;
 
     /// <summary>
     /// The main plugin class.
@@ -41,6 +41,21 @@ namespace GhostSpectator
 
         /// <inheritdoc />
         public override string Author { get; } = "Build";
+
+        /// <inheritdoc />
+        public override string Name { get; } = "GhostSpectator";
+
+        /// <inheritdoc />
+        public override string Prefix { get; } = "GhostSpectator";
+
+        /// <inheritdoc />
+        public override PluginPriority Priority { get; } = PluginPriority.Last;
+
+        /// <inheritdoc />
+        public override Version RequiredExiledVersion { get; } = new Version(4, 1, 5);
+
+        /// <inheritdoc />
+        public override Version Version { get; } = new Version(1, 0, 0);
 
         /// <inheritdoc />
         public override void OnEnabled()
