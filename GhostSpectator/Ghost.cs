@@ -8,6 +8,7 @@
 namespace GhostSpectator
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Exiled.API.Features;
     using GhostSpectator.API;
     using MEC;
@@ -17,10 +18,12 @@ namespace GhostSpectator
     /// </summary>
     public class Ghost
     {
+        private readonly List<Player> trackedPlayers = new List<Player>();
+
         /// <summary>
         /// Gets a collection of players considered to be ghosts.
         /// </summary>
-        public HashSet<Player> TrackedPlayers { get; } = new HashSet<Player>();
+        public ReadOnlyCollection<Player> TrackedPlayers => trackedPlayers.AsReadOnly();
 
         /// <summary>
         /// Sets a player to be a ghost.
@@ -28,6 +31,9 @@ namespace GhostSpectator
         /// <param name="player">The player to make a ghost.</param>
         public void AddRole(Player player)
         {
+            if (Check(player))
+                return;
+
             player.Role = RoleType.Tutorial;
 
             player.IsGodModeEnabled = true;
@@ -37,7 +43,7 @@ namespace GhostSpectator
             Scp096.TurnedPlayers.Add(player);
             Scp173.TurnedPlayers.Add(player);
 
-            TrackedPlayers.Add(player);
+            trackedPlayers.Add(player);
 
             Timing.CallDelayed(0.5f, () =>
             {
@@ -66,7 +72,7 @@ namespace GhostSpectator
             Scp096.TurnedPlayers.Remove(player);
             Scp173.TurnedPlayers.Remove(player);
 
-            TrackedPlayers.Remove(player);
+            trackedPlayers.Remove(player);
 
             if (player.IsAlive)
                 player.Role = RoleType.Spectator;
