@@ -12,10 +12,20 @@ namespace GhostSpectator
     using GhostSpectator.API;
     using MEC;
 
+    /// <summary>
+    /// Represents a ghost role in-game.
+    /// </summary>
     public class Ghost
     {
+        /// <summary>
+        /// Gets a collection of players considered to be ghosts.
+        /// </summary>
         public HashSet<Player> TrackedPlayers { get; } = new HashSet<Player>();
 
+        /// <summary>
+        /// Sets a player to be a ghost.
+        /// </summary>
+        /// <param name="player">The player to make a ghost.</param>
         public void AddRole(Player player)
         {
             player.Role = RoleType.Tutorial;
@@ -40,6 +50,10 @@ namespace GhostSpectator
             });
         }
 
+        /// <summary>
+        /// Removes the ghost role from the player.
+        /// </summary>
+        /// <param name="player">The player to remove the role from.</param>
         public void RemoveRole(Player player)
         {
             if (!Check(player))
@@ -58,6 +72,11 @@ namespace GhostSpectator
                 player.Role = RoleType.Spectator;
         }
 
+        /// <summary>
+        /// Checks if a player is a ghost.
+        /// </summary>
+        /// <param name="player">The player to check.</param>
+        /// <returns>A value indicating whether the checked player is a ghost.</returns>
         public bool Check(Player player) => TrackedPlayers.Contains(player);
     }
 }

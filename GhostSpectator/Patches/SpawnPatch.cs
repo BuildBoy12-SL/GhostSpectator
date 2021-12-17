@@ -23,11 +23,10 @@ namespace GhostSpectator.Patches
     [HarmonyPatch(typeof(RespawnManager), nameof(RespawnManager.Spawn))]
     internal static class SpawnPatch
     {
-        private static List<ReferenceHub> SpawnablePlayers => Player.List.Where(p =>
+        private static List<ReferenceHub> SpawnablePlayers => Player.List.Where(player =>
         {
-            Ghost ghost = Plugin.Instance.Ghost;
-            return (p.IsDead && !p.IsOverwatchEnabled) || ghost.Check(p);
-        }).Select(x => x.ReferenceHub).ToList();
+            return (player.IsDead && !player.IsOverwatchEnabled) || Plugin.Instance.Ghost.Check(player);
+        }).Select(player => player.ReferenceHub).ToList();
 
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
