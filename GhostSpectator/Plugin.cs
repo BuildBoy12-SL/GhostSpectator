@@ -40,16 +40,16 @@ namespace GhostSpectator
         public Ghost Ghost { get; private set; }
 
         /// <inheritdoc />
-        public override string Author { get; } = "Build";
+        public override string Author => "Build";
 
         /// <inheritdoc />
-        public override string Name { get; } = "GhostSpectator";
+        public override string Name => "GhostSpectator";
 
         /// <inheritdoc />
-        public override string Prefix { get; } = "GhostSpectator";
+        public override string Prefix => "GhostSpectator";
 
         /// <inheritdoc />
-        public override PluginPriority Priority { get; } = PluginPriority.Last;
+        public override PluginPriority Priority => PluginPriority.Last;
 
         /// <inheritdoc />
         public override Version RequiredExiledVersion { get; } = new Version(4, 1, 5);

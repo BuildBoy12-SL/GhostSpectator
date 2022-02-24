@@ -16,13 +16,13 @@ namespace GhostSpectator.Commands
     public class Ghost : ICommand
     {
         /// <inheritdoc />
-        public string Command { get; } = "tutorial";
+        public string Command => "tutorial";
 
         /// <inheritdoc />
         public string[] Aliases { get; } = { "ghost", "spec" };
 
         /// <inheritdoc />
-        public string Description { get; } = "Sets a user to a tutorial that cannot interact with objects.";
+        public string Description => "Sets a user to a tutorial that cannot interact with objects.";
 
         /// <inheritdoc />
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -36,7 +36,7 @@ namespace GhostSpectator.Commands
 
             if (Plugin.Instance.Ghost.Check(player))
             {
-                player.Role = RoleType.Spectator;
+                player.Role.Type = RoleType.Spectator;
                 response = "Set you back to spectator.";
                 return true;
             }

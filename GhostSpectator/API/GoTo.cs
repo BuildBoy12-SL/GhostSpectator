@@ -57,7 +57,7 @@ namespace GhostSpectator.API
             player.ClearBroadcasts();
             player.Broadcast(3, plugin.Translation.TeleportPlayer
                 .Replace("{name}", chosen.Nickname)
-                .Replace("{class}", $"<color={chosen.RoleColor.ToHex()}>{chosen.ReferenceHub.characterClassManager.CurRole.fullName}</color>"));
+                .Replace("{class}", $"<color={chosen.Role.Color.ToHex()}>{chosen.ReferenceHub.characterClassManager.CurRole.fullName}</color>"));
 
             player.Position = chosen.Position + (Vector3.up * 2);
         }

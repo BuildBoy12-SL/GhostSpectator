@@ -32,7 +32,7 @@ namespace GhostSpectator.API
         internal static void Recache()
         {
             DoorsValue.Clear();
-            DoorsValue.AddRange(Map.Doors);
+            DoorsValue.AddRange(Door.List);
         }
 
         /// <summary>
@@ -40,11 +40,7 @@ namespace GhostSpectator.API
         /// </summary>
         internal static void OnDecontaminating()
         {
-            DoorsValue.RemoveAll(door =>
-            {
-                float y = door.Position.y;
-                return y < 500 && y > -500;
-            });
+            DoorsValue.RemoveAll(door => door.Room.Zone == ZoneType.LightContainment);
         }
     }
 }

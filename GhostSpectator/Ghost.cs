@@ -34,7 +34,7 @@ namespace GhostSpectator
             if (Check(player))
                 return;
 
-            player.Role = RoleType.Tutorial;
+            player.Role.Type = RoleType.Tutorial;
 
             player.IsGodModeEnabled = true;
             player.IsInvisible = true;
@@ -75,7 +75,7 @@ namespace GhostSpectator
             trackedPlayers.Remove(player);
 
             if (player.IsAlive)
-                player.Role = RoleType.Spectator;
+                player.Role.Type = RoleType.Spectator;
         }
 
         /// <summary>

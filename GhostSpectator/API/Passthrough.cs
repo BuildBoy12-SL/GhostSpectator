@@ -10,6 +10,7 @@ namespace GhostSpectator.API
     using System.Collections.Generic;
     using Exiled.API.Enums;
     using Exiled.API.Features;
+    using Exiled.API.Structs;
     using MEC;
     using UnityEngine;
 
@@ -57,12 +58,12 @@ namespace GhostSpectator.API
             float furthestLiftDistance = -1f;
             Transform furthestLift = null;
 
-            foreach (Lift.Elevator elevator in lift.elevators)
+            foreach (Elevator elevator in lift.Elevators)
             {
-                float objectDistance = Vector3.Distance(player.Position, elevator.target.position);
+                float objectDistance = Vector3.Distance(player.Position, elevator.Target.position);
                 if (objectDistance > furthestLiftDistance)
                 {
-                    furthestLift = elevator.target;
+                    furthestLift = elevator.Target;
                     furthestLiftDistance = objectDistance;
                 }
             }
