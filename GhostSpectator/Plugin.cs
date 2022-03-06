@@ -52,10 +52,7 @@ namespace GhostSpectator
         public override PluginPriority Priority => PluginPriority.Last;
 
         /// <inheritdoc />
-        public override Version RequiredExiledVersion { get; } = new Version(4, 1, 5);
-
-        /// <inheritdoc />
-        public override Version Version { get; } = new Version(1, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(5, 0, 0);
 
         /// <inheritdoc />
         public override void OnEnabled()
