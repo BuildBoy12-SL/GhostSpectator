@@ -76,7 +76,7 @@ namespace GhostSpectator
             scp106Events.Subscribe();
             scp914Events = new Scp914Events(this);
             scp914Events.Subscribe();
-            serverEvents = new ServerEvents(this);
+            serverEvents = new ServerEvents();
             serverEvents.Subscribe();
             warheadEvents = new WarheadEvents(this);
             warheadEvents.Subscribe();
@@ -87,24 +87,24 @@ namespace GhostSpectator
         /// <inheritdoc />
         public override void OnDisabled()
         {
-            mapEvents.Unsubscribe();
+            mapEvents?.Unsubscribe();
             mapEvents = null;
-            playerEvents.Unsubscribe();
+            playerEvents?.Unsubscribe();
             playerEvents = null;
-            scp049Events.Unsubscribe();
+            scp049Events?.Unsubscribe();
             scp049Events = null;
-            scp096Events.Unsubscribe();
+            scp096Events?.Unsubscribe();
             scp096Events = null;
-            scp106Events.Unsubscribe();
+            scp106Events?.Unsubscribe();
             scp106Events = null;
-            scp914Events.Unsubscribe();
+            scp914Events?.Unsubscribe();
             scp914Events = null;
-            serverEvents.Unsubscribe();
+            serverEvents?.Unsubscribe();
             serverEvents = null;
-            warheadEvents.Unsubscribe();
+            warheadEvents?.Unsubscribe();
             warheadEvents = null;
 
-            harmony.UnpatchAll();
+            harmony?.UnpatchAll(harmony.Id);
             harmony = null;
             Ghost = null;
 

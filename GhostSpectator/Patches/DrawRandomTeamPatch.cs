@@ -29,7 +29,7 @@ namespace GhostSpectator.Patches
 
             int index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_I4_1);
             Label flagTrueLabel = generator.DefineLabel();
-            newInstructions[index].WithLabels(flagTrueLabel);
+            newInstructions[index].labels.Add(flagTrueLabel);
 
             index = newInstructions.FindIndex(instruction => instruction.opcode == OpCodes.Stloc_3) + 1;
 

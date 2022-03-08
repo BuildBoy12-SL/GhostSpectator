@@ -5,14 +5,10 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Exiled.API.Features;
-
 namespace GhostSpectator.EventHandlers
 {
-    using System.Linq;
     using Exiled.Events.EventArgs;
     using GhostSpectator.API;
-    using UnityEngine;
     using PlayerHandlers = Exiled.Events.Handlers.Player;
 
     /// <summary>
@@ -174,7 +170,7 @@ namespace GhostSpectator.EventHandlers
 
         private void OnHurting(HurtingEventArgs ev)
         {
-            if ((ev.Attacker != null && plugin.Ghost.Check(ev.Attacker)) || plugin.Ghost.Check(ev.Target))
+            if (plugin.Ghost.Check(ev.Attacker) || plugin.Ghost.Check(ev.Target))
                 ev.IsAllowed = false;
         }
 
@@ -184,7 +180,7 @@ namespace GhostSpectator.EventHandlers
                 return;
 
             ev.IsAllowed = false;
-            Passthrough.Door(ev.Door, ev.Player);
+            Passthrough.Door(ev.Player, ev.Door);
         }
 
         private void OnInteractingElevator(InteractingElevatorEventArgs ev)
@@ -204,7 +200,7 @@ namespace GhostSpectator.EventHandlers
 
         private void OnIntercomSpeaking(IntercomSpeakingEventArgs ev)
         {
-            if (ev.Player != null && plugin.Ghost.Check(ev.Player))
+            if (plugin.Ghost.Check(ev.Player))
                 ev.IsAllowed = false;
         }
 
@@ -252,7 +248,7 @@ namespace GhostSpectator.EventHandlers
 
         private void OnSpawningRagdoll(SpawningRagdollEventArgs ev)
         {
-            if (ev.Owner != null && plugin.Ghost.Check(ev.Owner))
+            if (plugin.Ghost.Check(ev.Owner))
                 ev.IsAllowed = false;
         }
 

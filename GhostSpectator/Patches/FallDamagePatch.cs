@@ -21,11 +21,15 @@ namespace GhostSpectator.Patches
     [HarmonyPatch(typeof(FallDamage), nameof(FallDamage.OnTouchdown))]
     internal static class FallDamagePatch
     {
-        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
-            int index = newInstructions.FindIndex(x => x.opcode == OpCodes.Ldarg_0);
-            Label runDamageLabel = newInstructions[index].labels[0];
+
+            const int offset = 1;
+            int index = newInstructions.FindIndex(x => x.opcode == OpCodes.Ret) + offset;
+
+            Label retLabel = generator.DefineLabel();
+
             newInstructions.InsertRange(index, new[]
             {
                 new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),
@@ -34,9 +38,10 @@ namespace GhostSpectator.Patches
                 new CodeInstruction(OpCodes.Ldfld, Field(typeof(FallDamage), nameof(FallDamage._hub))),
                 new CodeInstruction(OpCodes.Call, Method(typeof(Player), nameof(Player.Get), new[] { typeof(ReferenceHub) })),
                 new CodeInstruction(OpCodes.Call, Method(typeof(Ghost), nameof(Ghost.Check), new[] { typeof(Player) })),
-                new CodeInstruction(OpCodes.Brfalse_S, runDamageLabel),
-                new CodeInstruction(OpCodes.Ret),
+                new CodeInstruction(OpCodes.Brtrue_S, retLabel),
             });
+
+            newInstructions[newInstructions.Count - 1].labels.Add(retLabel);
 
             for (int z = 0; z < newInstructions.Count; z++)
                 yield return newInstructions[z];

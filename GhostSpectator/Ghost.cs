@@ -83,6 +83,12 @@ namespace GhostSpectator
         /// </summary>
         /// <param name="player">The player to check.</param>
         /// <returns>A value indicating whether the checked player is a ghost.</returns>
-        public bool Check(Player player) => TrackedPlayers.Contains(player);
+        public bool Check(Player player)
+        {
+            if (player is null)
+                return false;
+
+            return TrackedPlayers.Contains(player);
+        }
     }
 }

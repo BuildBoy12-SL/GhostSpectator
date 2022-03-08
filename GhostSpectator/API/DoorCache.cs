@@ -9,12 +9,12 @@ namespace GhostSpectator.API
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using Exiled.API.Enums;
     using Exiled.API.Features;
-    using Interactables.Interobjects.DoorUtils;
 
     /// <summary>
-    /// Manages a <see cref="List{T}"/> of <see cref="DoorVariant"/>s to remove those in LCZ post-decontamination.
+    /// Manages a <see cref="List{T}"/> of <see cref="Door"/>s to remove those in LCZ post-decontamination.
     /// </summary>
     public static class DoorCache
     {
@@ -23,11 +23,11 @@ namespace GhostSpectator.API
         /// <summary>
         /// Gets all valid doors to teleport to.
         /// </summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> of <see cref="DoorVariant"/> which are considered to be valid teleport targets.</returns>
-        public static ReadOnlyCollection<Door> Doors { get; } = DoorsValue.AsReadOnly();
+        /// <returns>A <see cref="IEnumerable{T}"/> of <see cref="Door"/> which are considered to be valid teleport targets.</returns>
+        public static ReadOnlyCollection<Door> Doors => DoorsValue.AsReadOnly();
 
         /// <summary>
-        /// Clears and resets <see cref="DoorsValue"/> to hold every door in <see cref="Map.Doors"/>.
+        /// Clears and resets <see cref="DoorsValue"/> to hold every door in <see cref="Door.List"/>.
         /// </summary>
         internal static void Recache()
         {

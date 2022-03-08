@@ -24,9 +24,9 @@ namespace GhostSpectator.API
         /// <summary>
         /// Moves a player to the other side of a door.
         /// </summary>
-        /// <param name="door">The door to go through.</param>
-        /// <param name="player">The player to move.</param>
-        public static void Door(Door door, Player player)
+        /// <param name="player">The player to teleport.</param>
+        /// <param name="door">The door the player interacted with.</param>
+        public static void Door(Player player, Door door)
         {
             float y;
             if (IsCheckpoint(door))
@@ -50,6 +50,11 @@ namespace GhostSpectator.API
             player.Position = pos;
         }
 
+        /// <summary>
+        /// Moves a player to an adjacent elevator.
+        /// </summary>
+        /// <param name="player">The player to teleport.</param>
+        /// <param name="lift">The lift the player interacted with.</param>
         public static void Elevator(Player player, Lift lift)
         {
             if (ElevatorUsers.Contains(player.Id))

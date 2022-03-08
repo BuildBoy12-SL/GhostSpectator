@@ -23,7 +23,7 @@ namespace GhostSpectator
         /// Gets or sets the message to be displayed to a ghost when there are no valid teleport targets.
         /// </summary>
         [Description("The message to be displayed to a ghost when there are no valid teleport targets.")]
-        public string FailTeleport { get; set; } = "Could not find a valid player to teleport to.";
+        public string FailTeleport { get; set; } = "Could not find a valid point to teleport to.";
 
         /// <summary>
         /// Gets or sets the message to show when a player teleports to a door.

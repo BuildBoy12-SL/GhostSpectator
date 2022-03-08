@@ -25,7 +25,7 @@ namespace GhostSpectator.Patches
         {
             List<CodeInstruction> newInstructions = ListPool<CodeInstruction>.Shared.Rent(instructions);
             Label checkSpectatorLabel = generator.DefineLabel();
-            newInstructions[0].WithLabels(checkSpectatorLabel);
+            newInstructions[0].labels.Add(checkSpectatorLabel);
             newInstructions.InsertRange(0, new[]
             {
                 new CodeInstruction(OpCodes.Call, PropertyGetter(typeof(Plugin), nameof(Plugin.Instance))),

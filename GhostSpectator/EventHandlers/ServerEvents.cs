@@ -8,6 +8,7 @@
 namespace GhostSpectator.EventHandlers
 {
     using GhostSpectator.API;
+    using MEC;
     using ServerHandlers = Exiled.Events.Handlers.Server;
 
     /// <summary>
@@ -15,14 +16,6 @@ namespace GhostSpectator.EventHandlers
     /// </summary>
     public class ServerEvents
     {
-        private readonly Plugin plugin;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServerEvents"/> class.
-        /// </summary>
-        /// <param name="plugin">An instance of the <see cref="Plugin"/> class.</param>
-        public ServerEvents(Plugin plugin) => this.plugin = plugin;
-
         /// <summary>
         /// Subscribes to all required events.
         /// </summary>
@@ -41,7 +34,7 @@ namespace GhostSpectator.EventHandlers
 
         private void OnWaitingForPlayers()
         {
-            DoorCache.Recache();
+            Timing.CallDelayed(5f, DoorCache.Recache);
         }
     }
 }

@@ -11,6 +11,9 @@ namespace GhostSpectator.API
     using Exiled.API.Features;
     using UnityEngine;
 
+    /// <summary>
+    /// Handles available positions to spawn ghosts.
+    /// </summary>
     public static class SpawnPosition
     {
         private static readonly Dictionary<int, Vector3> SpawnPositions = new Dictionary<int, Vector3>();

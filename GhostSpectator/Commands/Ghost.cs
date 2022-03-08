@@ -28,7 +28,7 @@ namespace GhostSpectator.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
-            if (player == null)
+            if (player is null)
             {
                 response = "This command must be executed in-game.";
                 return false;
