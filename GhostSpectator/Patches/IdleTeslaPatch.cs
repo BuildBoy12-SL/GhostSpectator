@@ -14,6 +14,7 @@ namespace GhostSpectator.Patches
     using HarmonyLib;
     using NorthwoodLib.Pools;
     using static HarmonyLib.AccessTools;
+    using TeslaGate = TeslaGate;
 
     /// <summary>
     /// Patches <see cref="TeslaGate.PlayerInIdleRange"/> to prevent ghosts from triggering the idle tesla gate animation.

@@ -112,8 +112,7 @@ namespace GhostSpectator.EventHandlers
 
         private void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (plugin.Ghost.Check(ev.Player))
-                plugin.Ghost.RemoveRole(ev.Player);
+            plugin.Ghost.RemoveRole(ev.Player);
         }
 
         private void OnClosingGenerator(ClosingGeneratorEventArgs ev)
