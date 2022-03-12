@@ -65,6 +65,8 @@ namespace GhostSpectator
             if (!Check(player))
                 return;
 
+            player.ClearInventory();
+
             player.IsGodModeEnabled = false;
             player.IsInvisible = false;
             player.NoClipEnabled = false;
