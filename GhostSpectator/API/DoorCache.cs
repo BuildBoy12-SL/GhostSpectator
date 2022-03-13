@@ -9,7 +9,6 @@ namespace GhostSpectator.API
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Linq;
     using Exiled.API.Enums;
     using Exiled.API.Features;
 
@@ -40,7 +39,11 @@ namespace GhostSpectator.API
         /// </summary>
         internal static void OnDecontaminating()
         {
-            DoorsValue.RemoveAll(door => door.Room.Zone == ZoneType.LightContainment);
+            DoorsValue.RemoveAll(door =>
+            {
+                float y = door.Position.y;
+                return y < 500 && y > -500;
+            });
         }
     }
 }

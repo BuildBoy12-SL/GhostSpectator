@@ -59,7 +59,7 @@ namespace GhostSpectator.EventHandlers
         {
             foreach (Player player in plugin.Ghost.TrackedPlayers)
             {
-                if (player.Zone != ZoneType.Surface)
+                if (player.Position.y < 800f)
                     player.Position = SurfacePosition;
             }
         }

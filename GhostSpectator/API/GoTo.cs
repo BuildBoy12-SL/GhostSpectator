@@ -40,7 +40,7 @@ namespace GhostSpectator.API
                     safePos = pos;
             }
 
-            if (chosen is null)
+            if (chosen == null)
             {
                 player.Broadcast(3, Plugin.Instance.Translation.FailTeleport, shouldClearPrevious: true);
                 return;

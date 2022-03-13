@@ -36,7 +36,7 @@ namespace GhostSpectator.Commands
 
             if (Plugin.Instance.Ghost.Check(player))
             {
-                player.Role.Type = RoleType.Spectator;
+                Plugin.Instance.Ghost.RemoveRole(player);
                 response = "Set you back to spectator.";
                 return true;
             }
