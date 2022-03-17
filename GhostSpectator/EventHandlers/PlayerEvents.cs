@@ -48,6 +48,7 @@ namespace GhostSpectator.EventHandlers
             PlayerHandlers.PickingUpAmmo += OnPickingUpAmmo;
             PlayerHandlers.PickingUpArmor += OnPickingUpArmor;
             PlayerHandlers.PickingUpItem += OnPickingUpItem;
+            PlayerHandlers.PickingUpScp330 += OnPickingUpScp330;
             PlayerHandlers.ReceivingEffect += OnReceivingEffect;
             PlayerHandlers.RemovingHandcuffs += OnRemovingHandcuffs;
             PlayerHandlers.Shooting += OnShooting;
@@ -82,6 +83,7 @@ namespace GhostSpectator.EventHandlers
             PlayerHandlers.PickingUpAmmo -= OnPickingUpAmmo;
             PlayerHandlers.PickingUpArmor -= OnPickingUpArmor;
             PlayerHandlers.PickingUpItem -= OnPickingUpItem;
+            PlayerHandlers.PickingUpScp330 -= OnPickingUpScp330;
             PlayerHandlers.ReceivingEffect -= OnReceivingEffect;
             PlayerHandlers.RemovingHandcuffs -= OnRemovingHandcuffs;
             PlayerHandlers.Shooting -= OnShooting;
@@ -222,6 +224,12 @@ namespace GhostSpectator.EventHandlers
         }
 
         private void OnPickingUpItem(PickingUpItemEventArgs ev)
+        {
+            if (plugin.Ghost.Check(ev.Player))
+                ev.IsAllowed = false;
+        }
+
+        private void OnPickingUpScp330(PickingUpScp330EventArgs ev)
         {
             if (plugin.Ghost.Check(ev.Player))
                 ev.IsAllowed = false;
